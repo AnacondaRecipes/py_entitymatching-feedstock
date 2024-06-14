@@ -43,12 +43,17 @@ requirements:
     - matplotlib-base >=2.2.4
 
 test:
+  source_files:
+    - py_entitymatching/tests
   imports:
     - py_entitymatching
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    # skip test_null_cases, marked @unittest.skip("Not a test")
+    - pytest -v py_entitymatching/tests -k "not test_null_cases"
 
 about:
   home: https://sites.google.com/site/anhaidgroup/current-projects/magellan/py_entitymatching
